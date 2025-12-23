@@ -30,7 +30,7 @@ Nvidia GeForce RTX 4060 (8GB)
 |[ResNet50](https://arxiv.org/abs/1512.03385)|0.92|
 |[EfficientNet-B0](https://arxiv.org/abs/1905.11946)|0.90|
 |[ConvNeXt-Tiny](https://arxiv.org/abs/2201.03545)|0.93|
-|[Vision Transformer](https://arxiv.org/abs/2010.11929)||
+|[Vision Transformer](https://arxiv.org/abs/2010.11929)|0.93|
 
 ### RestNet50:
 - Performance on every class
@@ -73,8 +73,18 @@ Nvidia GeForce RTX 4060 (8GB)
   
 
 ### Vision Transformer
+- Performance on every class
+  ||precision|recall|f1-score|support|
+  |-|-|-|-|-|
+  |Normal|0.98|0.92|0.95|937|
+  |Pneumonia|0.83|0.98|0.90|390|
+  |Tuberculosis|1.00|0.88|0.94|137|
 
-
+- Overall Performance
+  ||precision|recall|f1-score|support|
+  |-|-|-|-|-|
+  |macro avg|0.9430.95|0.93|1464|
+  |weighted avg|0.94|0.93|0.93|1464|
 
 
 ## Training Scripts
