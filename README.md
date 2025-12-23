@@ -27,7 +27,7 @@ Nvidia GeForce RTX 4060 (8GB)
 ## Model
 |Backbone|ACC|
 |-|-|
-|[ResNet50](https://arxiv.org/abs/1512.03385)|0.92|
+|[ResNet50](https://arxiv.org/abs/1512.03385)|0.94|
 |[EfficientNet-B0](https://arxiv.org/abs/1905.11946)|0.90|
 |[ConvNeXt-Tiny](https://arxiv.org/abs/2201.03545)|0.93|
 |[Vision Transformer](https://arxiv.org/abs/2010.11929)|0.93|
@@ -36,14 +36,14 @@ Nvidia GeForce RTX 4060 (8GB)
 - Performance on every class
   |precision|recall|f1-score|support|
   |-|-|-|-|
-  |Normal|1.00|0.88|0.94|937|
-  |Pneumonia|0.78|1.00|0.88|390|
-  |Tuberculosis|0.98|0.99|0.99|137|
+  |Normal|1.00|0.90|0.954|937|
+  |Pneumonia|0.81|1.00|0.90|390|
+  |Tuberculosis|1.00|0.98|0.99|137|
 - Overall Performance
   |precision|recall|f1-score|support|
   |-|-|-|-|
-  |micro avg|0.92|0.96|0.93|1464|
-  |weighted avg|0.94|0.92|0.93|1464|
+  |micro avg|0.94|0.96|0.94|1464|
+  |weighted avg|0.95|0.94|0.94|1464|
 
 ### EfficientNet-B0
 - Performance on every class
