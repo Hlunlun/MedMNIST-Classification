@@ -13,10 +13,17 @@
 
 
 ## Dataset
-The dataset is from [MedMNIST](https://github.com/med-mnist/medmnist) and is used for classification.
+- The Pneumonia MNIST dataset is from [MedMNIST](https://github.com/Hlunlun/MedMNIST-Classification) 
+- The TB chest dataset is from ...
 
 ## Model
-The model is from [ResNet50](https://pytorch.org/vision/0.15/models.html#classification) and is used for classification.
+|Model|ACC|AUC|
+|-|-|-|
+|[ResNet50](https://pytorch.org/vision/0.15/models.html#classification)|
+||||
+||||
+
+
 
 ## Training Scripts
 You can compare different model using the training scripts in [JupyterNotebook/](https://github.com/Hlunlun/MedMNIST-Classification/tree/master/JupyterNotebook)
@@ -30,5 +37,7 @@ JupyterNotebook
 
 ## Results
 ![image](static/confusion_matrix.png)
+
+
 
 

@@ -49,25 +49,36 @@ class MultiDiseaseDataset(Dataset):
             label = self.data_source.iloc[idx]['label']
         return TRANSFORM(img), torch.tensor(label, dtype=torch.long)
 
-def get_model():
-    model = models.resnet50(weights=models.ResNet50_Weights.DEFAULT)
-    model.fc = nn.Linear(model.fc.in_features, 3)
+def get_model(model_type):
+    if model_type == "ResNet50":
+        model = models.resnet50(weights=models.ResNet50_Weights.DEFAULT)
+        model.fc = nn.Linear(model.fc.in_features, 3)
+    elif model_type == "ViT-B/16":
+        model = models.vit_b_16(weights=models.ViT_B_16_Weights.DEFAULT)
+        model.heads.head = nn.Linear(model.heads.head.in_features, 3)
+    elif model_type == "EfficientNet-B0":
+        model = models.efficientnet_b0(weights=models.EfficientNet_B0_Weights.DEFAULT)
+        model.classifier = nn.Linear(model.classifier.in_features, 3)
+    elif model_type == "ConvNeXt-Tiny":
+        model = models.convnext_tiny(weights=True)
+        model.classifier[2] = nn.Linear(model.classifier[2].in_features, 3)
+    
     return model.to(DEVICE)
 
-# ==========================================
-# 3. UI 介面設計
-# ==========================================
+
 st.title("🫁 肺部疾病 AI 診斷與訓練平台")
-st.markdown("支援 **正常 (Normal)**、**肺炎 (Pneumonia)** 與 **肺結核 (TB)** 三類辨識。")
+st.markdown("支援 **正常 (Normal)**、**肺炎 (Pneumonia)** 與 **肺結核 (Tuberculosis)** 三類辨識。")
 
 # --- 側邊欄：訓練參數 ---
-st.sidebar.header("🛠️ 訓練設定")
+st.sidebar.header("🛠️ Training Setting")
+model_type = st.sidebar.selectbox("Model", ["ResNet50", "ViT-B/16", "EfficientNet-B0", "ConvNeXt-Tiny"], index=0)
+batch_size = st.sidebar.selectbox("Batch Size", [8, 16, 32, 64], index=1)
 epochs = st.sidebar.slider("Epochs", 1, 10, 3)
 lr = st.sidebar.select_slider("Learning Rate", options=[1e-3, 1e-4, 5e-5], value=1e-4)
-train_btn = st.sidebar.button("🚀 開始模型訓練")
+train_btn = st.sidebar.button("🚀 Start Training!")
 
 # --- 主畫面：分頁設計 ---
-tab1, tab2, tab3 = st.tabs(["🔍 即時推論", "📊 效能評估", "📝 訓練日誌"])
+tab1, tab2, tab3 = st.tabs(["🔍 Inference", "📊 Evaluation", "📝 Training Log"])
 
 # --- Tab 1: 即時推論 ---
 with tab1:
@@ -85,7 +96,7 @@ with tab1:
             if not os.path.exists(MODEL_PATH):
                 st.warning("⚠️ 請先在側邊欄啟動訓練，產生模型權重。")
             else:
-                model = get_model()
+                model = get_model(model_type)
                 model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE))
                 model.eval()
                 
@@ -116,7 +127,7 @@ with tab3:
         ])
         loader = DataLoader(train_set, batch_size=16, shuffle=True)
         
-        model = get_model()
+        model = get_model(model_type)
         optimizer = optim.Adam(model.parameters(), lr=lr)
         criterion = nn.CrossEntropyLoss()
         
@@ -140,14 +151,14 @@ with tab3:
         
         torch.save(model.state_dict(), MODEL_PATH)
         st.success("✅ 訓練完成！權重已儲存。")
-        
+
 # --- Tab 2: 效能評估 (完整三分類混淆矩陣) ---
 with tab2:
     if st.button("📈 評估模型效能"):
         if not os.path.exists(MODEL_PATH):
             st.error("找不到模型，請先訓練。")
         else:
-            model = get_model()
+            model = get_model(model_type)
             # 確保此處也使用 map_location 防止裝置錯誤
             model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE))
             model.eval()
