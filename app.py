@@ -11,7 +11,7 @@ st.markdown("支援 **正常 (Normal)**、**肺炎 (Pneumonia)** 與 **肺結核
 
 # Training Setting
 st.sidebar.header("🛠️ Training Setting")
-model_type = st.sidebar.selectbox("Model", ["ResNet50", "ViT-B/16", "EfficientNet-B0", "ConvNeXt-Tiny"], index=0)
+model_type = st.sidebar.selectbox("Model", ["ResNet50", "ViT-B16", "EfficientNet-B0", "ConvNeXt-Tiny"], index=0)
 batch_size = st.sidebar.selectbox("Batch Size", [8, 16, 32, 64], index=3)
 epochs = st.sidebar.slider("Epochs", 1, 10, 3)
 lr = st.sidebar.select_slider("Learning Rate", options=[1e-3, 1e-4, 5e-5], value=1e-4)

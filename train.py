@@ -47,7 +47,7 @@ def get_model(model_type, num_classes = 3):
     if model_type == "ResNet50":
         model = models.resnet50(weights=models.ResNet50_Weights.DEFAULT)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
-    elif model_type == "ViT-B/16":
+    elif model_type == "ViT-B16":
         model = models.vit_b_16(weights=models.ViT_B_16_Weights.DEFAULT)
         model.heads.head = nn.Linear(model.heads.head.in_features, num_classes)
     elif model_type == "EfficientNet-B0":
