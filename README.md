@@ -1,4 +1,4 @@
-# Classification of Pneumonia, TB and Normal 
+# Classification of Chest X-Ray images: Pneumonia, Turberculosis and Normal 
 
 ## Get Started
 1. Install the required packages
@@ -11,17 +11,72 @@
     streamlit run app.py
     ```
 
+## Configuration
+Nvidia GeForce RTX 4060 (8GB)
+
 
 ## Dataset
-- The Pneumonia MNIST dataset is from [MedMNIST](https://github.com/Hlunlun/MedMNIST-Classification) 
-- The TB chest dataset is from ...
+| Dataset | Samples | Classes |
+|-|-|-|
+| [PneumoniaMNIST](https://github.com/Hlunlun/MedMNIST-Classification) | 5,856 | 2 |
+|Tuberculosis Chest X-Ray Images | 1,000 | 3 |
+
+### Preprocessing
+```graphviz
+
+```
+
 
 ## Model
-|Model|ACC|AUC|
-|-|-|-|
-|[ResNet50](https://pytorch.org/vision/0.15/models.html#classification)|
-||||
-||||
+|Backbone|ACC|
+|-|-|
+|[ResNet50](https://arxiv.org/abs/1512.03385)|0.92|
+|[EfficientNet-B0](https://arxiv.org/abs/1905.11946)|0.90|
+|[ConvNeXt-Tiny](https://arxiv.org/abs/2201.03545)|0.93|
+|[Vision Transformer](https://arxiv.org/abs/2010.11929)||
+
+### RestNet50:
+- Performance on every class
+  |precision|recall|f1-score|support|
+  |-|-|-|-|
+  |Normal|1.00|0.88|0.94|937|
+  |Pneumonia|0.78|1.00|0.88|390|
+  |Tuberculosis|0.98|0.99|0.99|137|
+- Overall Performance
+  |precision|recall|f1-score|support|
+  |-|-|-|-|
+  |micro avg|0.92|0.96|0.93|1464|
+  |weighted avg|0.94|0.92|0.93|1464|
+
+### EfficientNet-B0
+- Performance on every class
+  ||precision|recall|f1-score|support|
+  |-|-|-|-|-|
+  |Normal|1.00|0.85|0.92|937|
+  |Pneumonia|0.73|1.00|0.85|390|
+  |Tuberculosis|1.00|0.99|0.99|137|
+- Overall Performance
+  ||precision|recall|f1-score|support|
+  |-|-|-|-|-|
+  |macro avg|0.91|0.94|0.92|1464|
+  |weighted avg|0.93|0.90|0.91|1464|
+
+### ConvNeXt-Tiny
+- Performance on every class
+  ||precision|recall|f1-score|support|
+  |-|-|-|-|-|
+  |Normal|1.00|0.89|0.94|937|
+  |Pneumonia|0.80|1.00|0.89|390|
+  |Tuberculosis|0.99|1.00|0.99|137|
+- Overall Performance
+  ||precision|recall|f1-score|support|
+  |-|-|-|-|-|
+  |macro avg|0.93|0.96|0.94|1464|
+  |weighted avg|0.95|0.93|0.93|1464|
+  
+
+### Vision Transformer
+
 
 
 
@@ -36,7 +91,17 @@ JupyterNotebook
 ```
 
 ## Results
-![image](static/confusion_matrix.png)
+- ResNet50
+![image](static/restnet50.png)
+
+- EfficientNet-B0
+![image](static/efficientnet-b0.png)
+
+- ConvNeXt-Tiny
+![image](static/convnext-tiny.png)
+
+- Vision Transformer
+![image](static/vit.png)
 
 
 
