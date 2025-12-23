@@ -1,6 +1,7 @@
 # Classification of Chest X-Ray images: Pneumonia, Turberculosis and Normal 
 
-<video src="https://github.com/Hlunlun/MedMNIST-Classification/blob/master/static/demo.mp4" width="100%" controls></video>
+
+![demo](static/demo.gif)
 
 ## Get Started
 1. Install the required packages
