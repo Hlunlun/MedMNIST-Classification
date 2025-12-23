@@ -140,6 +140,7 @@ with tab3:
         
         torch.save(model.state_dict(), MODEL_PATH)
         st.success("✅ 訓練完成！權重已儲存。")
+        
 # --- Tab 2: 效能評估 (完整三分類混淆矩陣) ---
 with tab2:
     if st.button("📈 評估模型效能"):

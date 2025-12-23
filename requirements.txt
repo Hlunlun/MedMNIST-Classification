@@ -1,0 +1,10 @@
+matplotlib==3.10.8
+medmnist==3.0.2
+numpy==2.4.0
+pandas==2.3.3
+Pillow==12.0.0
+scikit_learn==1.4.2
+seaborn==0.13.2
+streamlit==1.52.2
+torch==2.5.1+cu121
+torchvision==0.20.1+cu121
