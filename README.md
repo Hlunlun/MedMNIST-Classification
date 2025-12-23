@@ -2,9 +2,9 @@
 
 ## Get Started
 1. Install the required packages
-  ```bash
-  pip install -r requirements.txt
-  ```
+    ```bash
+    pip install -r requirements.txt
+    ```
 
 2. Start the system
     ```bash
@@ -19,12 +19,12 @@ The dataset is from [MedMNIST](https://github.com/med-mnist/medmnist) and is use
 The model is from [ResNet50](https://pytorch.org/vision/0.15/models.html#classification) and is used for classification.
 
 ## Training Scripts
-You can compare different model using the training scripts in JupyterNotebook/
+You can compare different model using the training scripts in [JupyterNotebook/](https://github.com/Hlunlun/MedMNIST-Classification/tree/master/JupyterNotebook)
 
 ```bash
 JupyterNotebook
-   |-- main.ipynb
-   |-- ensemble.ipynb
+  |-- main.ipynb
+  |-- ensemble.ipynb
   |-- inference.ipynb
 ```
 
