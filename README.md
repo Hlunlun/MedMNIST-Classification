@@ -23,7 +23,59 @@ Nvidia GeForce RTX 4060 (8GB)
 
 ### Preprocessing
 ```graphviz
+digraph DataPreprocessing {
+    rankdir=TB;
+    node [shape=rectangle, style="filled, rounded", fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
 
+    // Data Sources
+    subgraph cluster_sources {
+        label = "Data Sources";
+        style = dashed;
+        color = lightgrey;
+        tb_dir [label="Local TB Directory\n(Normal / Tuberculosis)", fillcolor="#FFF3E0"];
+        mnist_api [label="MedMNIST API\n(PneumoniaMNIST)", fillcolor="#E1F5FE"];
+    }
+
+    // Processing TB Data
+    load_tb [label="Load File Paths & Map Labels\n(Normal: 0, TB: 2)", fillcolor="#FFE0B2"];
+    tb_df [label="tb_df (Pandas DataFrame)", fillcolor="#FFE0B2"];
+    split_tb [label="train_test_split\n(test_size=0.2)", fillcolor="#FFCC80"];
+    
+    // Processing MNIST Data
+    mnist_train [label="mnist_train (split='train')", fillcolor="#B3E5FC"];
+    mnist_test [label="mnist_test (split='test')", fillcolor="#B3E5FC"];
+
+    // Custom Dataset Wrapper
+    wrapper_tb_train [label="MultiDiseaseDataset\n(is_mnist=False)", fillcolor="#C8E6C9"];
+    wrapper_tb_test [label="MultiDiseaseDataset\n(is_mnist=False)", fillcolor="#C8E6C9"];
+    wrapper_mnist_train [label="MultiDiseaseDataset\n(is_mnist=True)", fillcolor="#C8E6C9"];
+    wrapper_mnist_test [label="MultiDiseaseDataset\n(is_mnist=True)", fillcolor="#C8E6C9"];
+
+    // Final Output
+    concat_train [label="ConcatDataset\n(train_set)", fillcolor="#4CAF50", fontcolor="white", style="filled, bold"];
+    concat_test [label="ConcatDataset\n(test_set)", fillcolor="#2196F3", fontcolor="white", style="filled, bold"];
+
+    // Connections
+    tb_dir -> load_tb;
+    load_tb -> tb_df;
+    tb_df -> split_tb;
+    
+    split_tb -> wrapper_tb_train [label="train_tb_df"];
+    split_tb -> wrapper_tb_test [label="test_tb_df"];
+
+    mnist_api -> mnist_train;
+    mnist_api -> mnist_test;
+
+    mnist_train -> wrapper_mnist_train;
+    mnist_test -> wrapper_mnist_test;
+
+    wrapper_mnist_train -> concat_train;
+    wrapper_tb_train -> concat_train;
+
+    wrapper_mnist_test -> concat_test;
+    wrapper_tb_test -> concat_test;
+}
 ```
 
 
