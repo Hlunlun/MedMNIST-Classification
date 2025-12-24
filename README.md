@@ -97,9 +97,9 @@ You can compare different model using the training scripts in [JupyterNotebook/]
 
 ```bash
 JupyterNotebook
-  |-- main.ipynb
   |-- ensemble.ipynb
-  |-- inference.ipynb
+  |-- Pneumonia.ipynb
+  |-- TB_Chest.ipynb
 ```
 
 ## Results
