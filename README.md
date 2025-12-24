@@ -45,8 +45,8 @@ Nvidia GeForce RTX 4060 (8GB)
   |Pneumonia|0.81|1.00|0.90|390|
   |Tuberculosis|1.00|0.98|0.99|137|
 - Overall Performance
-  |precision|recall|f1-score|support|
-  |-|-|-|-|
+  ||precision|recall|f1-score|support|
+  |-|-|-|-|-|
   |micro avg|0.94|0.96|0.94|1464|
   |weighted avg|0.95|0.94|0.94|1464|
 
@@ -88,7 +88,7 @@ Nvidia GeForce RTX 4060 (8GB)
 - Overall Performance
   ||precision|recall|f1-score|support|
   |-|-|-|-|-|
-  |macro avg|0.9430.95|0.93|1464|
+  |macro avg|0.94|0.95|0.93|1464|
   |weighted avg|0.94|0.93|0.93|1464|
 
 
