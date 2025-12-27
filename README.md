@@ -23,7 +23,7 @@ Nvidia GeForce RTX 4060 (8GB)
 ## Dataset
 | Dataset | Samples | Classes |
 |-|-|-|
-| [PneumoniaMNIST](https://github.com/Hlunlun/MedMNIST-Classification) | 5,856 | 2 |
+| [PneumoniaMNIST](https://medmnist.com/) | 5,856 | 2 |
 |Tuberculosis Chest X-Ray Images | 4200 | 2 |
 
 ### Preprocessing
